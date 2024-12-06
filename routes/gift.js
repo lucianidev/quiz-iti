@@ -20,12 +20,13 @@ client
 
 router.get('/', async function(req,res,next) {
     if(!(req.session.finishiedQuiz)) return next(new Error("quiz non terminato perfavore completare il quiz"));
-    if(!(req.session.corrects === correctQuestions)) return res.render("gift", {qrDataGift : '',hasWon : false,});
+    if(!(req.session.corrects === correctQuestions)) return res.render("gift", {qrDataGift : '',hasWon : false,qrCodeDebug : ''});
 
     if(req.session.gift) {
         const alreadyGeneratedCode = await qrcode.toDataURL(req.session.gift);
         return res.render("gift", {
             qrDataGift : alreadyGeneratedCode,
+            qrCodeDebug : req.session.gift,
             hasWon : true,
         })
     }
