@@ -104,7 +104,7 @@ router.get('/sign', async function(req,res,next) {
             },
         );
         
-        return res.render('giftsign' ,{
+        return res.render('giftSign' ,{
             giftCode : req.query.code,
             message : 'codice valido',
             success : true,

@@ -11,7 +11,7 @@ const giftcodeRouter = require('./routes/gift');
 const MemoryStore = require('memorystore')(session);
 const app = express();
 
-console.log(path.join(__dirname, 'views'));
+
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -19,7 +19,7 @@ app.use(session({
   secret: 'keyboard cat', // da cambiare a sicura tipo
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false }, // da cambiare a true
+  cookie: { secure: true }, // da cambiare a true
   store: new MemoryStore({
     checkPeriod: 5400000, // prune expired entries every 24h
   }),
