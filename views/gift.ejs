@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <title>Document</title>
+    <style>
+      #confetti {
+        background: #000;
+        height: 100%;
+        left: 0px;
+        position: fixed;
+        top: 0px;
+        width: 100%;
+        z-index: -1;
+      }
+
+      .over {
+        z-index: 1;
+      }
+      .dm-sans {
+  font-family: "DM Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+    </style>
+  </head>
+  <body
+    style="height: 100vh"
+    class="dm-sans container d-flex justify-content-center align-items-center flex-column bg-dark"
+  >
+<%if (hasWon) {%>
+
+  <script
+  type="text/javascript"
+  src="https://code.jquery.com/jquery-1.11.0.js"
+  ></script>
+      <script src="./javascripts/confetti.js"></script>
+      <div id="confetti"></div>
+      <h2 class="text-light text-center">
+  Congratulazione hai completato il quiz
+        </h2>
+      <h2 class="text-light text-center">
+        Lascia che uno dei nostri operatori scannerizzi questo codice
+      </h2>
+      <img class="img-fluid"  src="<%=qrDataGift%>" alt="" />
+<% } else{ %>  
+  <h2 class="text-light text-center">
+    Purtroppo non sei riuscito a vincere
+  </h2>
+<% } %>
+
+  </body>
+</html>
