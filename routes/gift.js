@@ -74,12 +74,12 @@ router.get('/sign', async function(req,res,next) {
             req.query.code, // documentId
         );
         
-        if(!giftCode) return res.render('giftsign' ,{
+        if(!giftCode) return res.render('giftSign' ,{
             message : 'codice non valido',
             success : false,
             giftCode : req.query.code,
         });
-        if(giftCode.approved) return res.render('giftsign' ,{
+        if(giftCode.approved) return res.render('giftSign' ,{
             message : 'codice già approvato',
             success : false,
             giftCode : req.query.code,
@@ -91,7 +91,7 @@ router.get('/sign', async function(req,res,next) {
             [appwrite.Query.equal("approval_code", [Number(req.query.operatorcode)])], // documentId
         );
         
-        if(!operatorCode.total) return res.render('giftsign' ,{
+        if(!operatorCode.total) return res.render('giftSign' ,{
             message : 'codice operatore non valido',
             success : false,
             giftCode : req.query.code,
