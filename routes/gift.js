@@ -41,11 +41,13 @@ router.get('/', async function(req,res,next) {
         
         
         const qrCodeData =  `${req.protocol}://${req.get('host')}/gift/sign?code=${giftCode.$id}`; 
+        
         const qrCodeOfGiftCodeSign = await qrcode.toDataURL(qrCodeData);
         
         req.session.gift = qrCodeData;
         res.render("gift", {
             qrDataGift : qrCodeOfGiftCodeSign,
+            qrCodeDebug : qrCodeData,
             hasWon : true,
         })
     } catch (error) {
