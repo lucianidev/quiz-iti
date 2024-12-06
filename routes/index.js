@@ -24,7 +24,6 @@ router.get('/start', async function(req, res, next) {
   res.redirect('/question?questId=' + questions.documents[0].$id + '&curr=1')
   
   } catch (error) {
-    console.log(error);
     
     return next(new Error("impossibile trovare domanda"));
   }

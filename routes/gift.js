@@ -7,8 +7,8 @@ require('dotenv').config();
 let client = new appwrite.Client();
 
 const database = new appwrite.Databases(client);
-const correctQuestions = Number(process.env.NUM_OF_QUESTION); // da modificare ASAP
-console.log(process.env.NUM_OF_QUESTION);
+const correctQuestions = Number(process.env.NUM_OF_QUESTION); 
+
 
 client
     .setEndpoint(process.env.ENDPOINT) // Your API Endpoint
@@ -40,9 +40,8 @@ router.get('/', async function(req,res,next) {
         );
         
         
-        const qrCodeData =  `${req.protocol}://${req.get('host')}/gift/sign?code=${giftCode.$id}`; // da cambiare assolutamente ASAPPPP!!!!
+        const qrCodeData =  `${req.protocol}://${req.get('host')}/gift/sign?code=${giftCode.$id}`; 
         const qrCodeOfGiftCodeSign = await qrcode.toDataURL(qrCodeData);
-        console.log(qrCodeData);
         
         req.session.gift = qrCodeData;
         res.render("gift", {
@@ -50,7 +49,6 @@ router.get('/', async function(req,res,next) {
             hasWon : true,
         })
     } catch (error) {
-        console.log(error);
         
         return next(new Error("non siamo riusciti a generare il tuo codice"));
     }
@@ -65,7 +63,6 @@ router.get('/sign', async function(req,res,next) {
         giftCode : req.query.code,
     });
     if(isNaN(req.query.operatorcode)) return next(new Error("specificare un codice operatore numerico"));
-    console.log(req.query.code);
     
     try {
         const giftCode = await database.getDocument(
@@ -111,7 +108,6 @@ router.get('/sign', async function(req,res,next) {
             success : true,
         });
     } catch (error) {
-        console.log(error);
         
         return next(new Error("non siamo riusciti a generare il tuo codice"));
     }
