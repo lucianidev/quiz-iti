@@ -11,8 +11,9 @@ const giftcodeRouter = require('./routes/gift');
 const MemoryStore = require('memorystore')(session);
 const app = express();
 
+console.log(path.join(__dirname, 'views'));
 
-app.use(express.static(path.join(__dirname + '../public')));
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(session({
   secret: 'keyboard cat', // da cambiare a sicura tipo
