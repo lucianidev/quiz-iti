@@ -12,9 +12,7 @@ const MemoryStore = require('memorystore')(session);
 const app = express();
 
 
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.use(express.static(path.join(__dirname + '../public')));
 app.set('view engine', 'ejs');
 app.use(session({
   secret: 'keyboard cat', // da cambiare a sicura tipo
