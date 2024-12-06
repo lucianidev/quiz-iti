@@ -38,8 +38,9 @@ router.get('/', async function(req,res,next) {
                 approved : false,
             }, // data
         );
-
-        const qrCodeData =  req.protocol+ "://" +req.hostname + ":3000" + "/gift/sign?code=" + giftCode.$id; // da cambiare assolutamente ASAPPPP!!!!
+        
+        
+        const qrCodeData =  `${req.protocol}://${req.get('host')}/gift/sign?code=${giftCode.$id}`; // da cambiare assolutamente ASAPPPP!!!!
         const qrCodeOfGiftCodeSign = await qrcode.toDataURL(qrCodeData);
         console.log(qrCodeData);
         
@@ -73,12 +74,12 @@ router.get('/sign', async function(req,res,next) {
             req.query.code, // documentId
         );
         
-        if(!giftCode) res.render('giftsign' ,{
+        if(!giftCode) return res.render('giftsign' ,{
             message : 'codice non valido',
             success : false,
             giftCode : req.query.code,
         });
-        if(giftCode.approved) res.render('giftsign' ,{
+        if(giftCode.approved) return res.render('giftsign' ,{
             message : 'codice già approvato',
             success : false,
             giftCode : req.query.code,
